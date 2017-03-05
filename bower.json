@@ -1,0 +1,22 @@
+{
+  "name": "6",
+  "version": "0.0.0",
+  "dependencies": {
+    "angular": "1.5.0",
+    "bootstrap": "^3.2.0",
+    "angular-spotify": "^1.4.2",
+    "font-awesome": "^4.7.0",
+    "angular-masonry": "^0.16.0"
+  },
+  "appPath": "app",
+  "moduleName": "app",
+  "overrides": {
+    "bootstrap": {
+      "main": [
+        "less/bootstrap.less",
+        "dist/css/bootstrap.css",
+        "dist/js/bootstrap.js"
+      ]
+    }
+  }
+}

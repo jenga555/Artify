@@ -1,0 +1,32 @@
+.img-album {
+    display: inline-block;
+    height: 100px;
+    width: 100px;
+}
+
+
+#map {
+    height:500px;
+}
+
+@media (min-width: 767px) {
+  .content-section {
+    padding-top: 250px;
+  }
+  #map {
+    margin-top: 0px;
+  }
+}
+
+.container-full-width {
+  padding-top: 300px;
+}
+
+.btn-default {
+    color: white !important;
+    border: 1px solid white !important;
+}
+
+.btn-default:hover, .btn-default:focus {
+    background-color: black !important;
+}
