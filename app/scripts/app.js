@@ -7,7 +7,5 @@ angular
   ]).config(function(SpotifyProvider) {
     SpotifyProvider.setClientId('854e4a39ed614f8db67aa9d424093981');
     SpotifyProvider.setRedirectUri('https://julia-eng.github.io/Artify/app/callback.html');
-    SpotifyProvider.setScope('user-read-private playlist-read-private');
-    // // If you already have an auth token
-    // SpotifyProvider.setAuthToken('zoasliu1248sdfuiknuha7882iu4rnuwehifskmkiuwhjg23');
+    SpotifyProvider.setScope('user-read-private playlist-read-private playlist-read-collaborative');
   });
