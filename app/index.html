@@ -53,7 +53,7 @@
                         <a href="#page-top"></a>
                     </li>
                     <li ng-if="albums.length">
-                        <a href="" ng-click="toggleForm(showForm)"><small>{{showForm? 'Hide':'Show'}} form</small></a>
+                        <a href="" ng-click="toggleForm(showForm)" ng-class="showForm ? 'form-off' : 'form-on'"><small>{{showForm? 'Hide':'Show'}} form</small></a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#about">About</a>

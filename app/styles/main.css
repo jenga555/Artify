@@ -3,6 +3,24 @@
     padding: 5px;
 }
 
+.navbar-custom .nav li a.form-on {
+    color: gray;
+}
+
+.navbar-custom .nav li a.form-off {
+    color: yellow;
+}
+
+.navbar-custom .nav li a {
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.navbar-custom .nav li a:hover {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
 .intro {
     background: none !important;
     background-color: black;
@@ -26,18 +44,11 @@
    background-color: rgba(0, 0, 0, 0.4);
 }
 
-
-#map {
-    height:500px;
-}
-
 @media (min-width: 767px) {
   .content-section {
     padding-top: 250px;
   }
-  #map {
-    margin-top: 0px;
-  }
+
 }
 
 .container-full-width {
