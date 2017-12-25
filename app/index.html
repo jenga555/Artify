@@ -32,7 +32,7 @@
     <!-- endbuild -->
 </head>
 
-<body ng-app="app" id="page-top" data-spy="scroll" data-target=".navbar-fixed-top" ng-controller="MainCtrl">
+<body ng-app="app" id="page-top" data-spy="scroll" data-target=".navbar-fixed-top" ng-controller="MainCtrl" >
     <!--[if lte IE 8]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -59,10 +59,19 @@
                         <a href="#page-top"></a>
                     </li>
                     <li ng-if="albums.length">
-                        <a href="" ng-click="toggleForm(showForm)" ng-class="showForm ? 'form-off' : 'form-on'"><small>{{showForm? 'Hide':'Show'}} form</small></a>
+                        <a href="" ng-click="toggleForm(showForm)" ng-class="showForm ? 'text-highlight' : 'form-on'"><small>{{showForm? 'Hide':'Show'}} form</small></a>
+                    </li>
+                    <li ng-if="albums.length">
+                        <a href="" ng-click="downloadCollage()" class="text-highlight">
+                            <small>Download Collage</small>
+                            <span ng-if="downloadLoading">
+                                <i class="fa fa-circle-o-notch fa-spin fa-fw"></i>
+                                <span class="sr-only">Downloading...</span>
+                            </span>
+                        </a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#about">About</a>
+                        <a class="page-scroll" href="#about"><small>About</small></a>
                     </li>
                 </ul>
             </div>
@@ -77,8 +86,8 @@
 
             <div class="image-background">
 
-                <div ng-show="albums.length" masonry load-images="true" reload-on-show column-width="25%" class="clearfix">
-                    <div class="masonry-brick" ng-repeat="album in albums">
+                <div id="collage" ng-show="albums.length" masonry load-images="true" reload-on-show column-width="25%" class="clearfix">
+                    <div class="masonry-brick" ng-repeat="album in albums" >
                         <img ng-src="{{album.image}}" alt="{{album.name}}" ng-style="{ width : 100 * album.count, height : 100 * album.count }" style="max-height: 600px; max-width:600px">
                     </div>
                 </div>
@@ -89,14 +98,14 @@
                     <div class="col-md-6 col-md-offset-3">
                         <button class="btn btn-lg btn-default" id="btn-login" ng-click="login()" ng-if="!user.id">Login to Spotify</button>
 
-
                         <h4 style="margin-top:35px" ng-if="!user.id">Or pick from the featured playlists on Spotify</h4>
                         <h4 style="margin-top:35px" ng-if="user.id">Choose a playlist from your library</h4>
                         <form ng-submit="submitPlaylist()">
                             <div class="form-group">
                                 <select class="form-control" ng-options="playlist as playlist.name for playlist in playlistList track by playlist.id" ng-model="selectedPlaylist" required>
-                                                    <option style="display:none" value="">Select a playlist</option>
-                                                </select>
+                                    <option ng-if="playlistList" style="display:none" value="">Select a playlist</option>
+                                    <option ng-if="!playlistList" style="display:none" value="">Loading...</option>
+                                </select>
                             </div>
                             <br />
                             <button type="submit" value="Submit" class="btn btn-lg btn-default">Generate</button>
@@ -146,12 +155,14 @@
     <!-- /optional -->
     <script src="../bower_components/angular-masonry/angular-masonry.js"></script>
 
-
-
     <!-- Plugin JavaScript -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 
     <script type="text/javascript" src="styles/grayscale.js"></script>
+
+    <!-- Download image -->
+    <script type="text/javascript" src="../bower_components/dom-to-image/src/dom-to-image.js"></script>
+    <script type="text/javascript" src="../bower_components/file-saver/FileSaver.min.js"></script>
 
     <script type="text/javascript" src="scripts/app.js"></script>
     <script type="text/javascript" src="scripts/controllers/main.js"></script>

@@ -10,6 +10,7 @@ angular.module('app').controller('MainCtrl', ['$scope', 'Spotify', function($sco
     $scope.playlistList = null;
     $scope.albums = [];
     $scope.showForm = true;
+    $scope.downloadLoading = false;
 
     if (localStorage.getItem('spotify-token')) {
         Spotify.getCurrentUser().then(function(data) {
@@ -99,6 +100,18 @@ angular.module('app').controller('MainCtrl', ['$scope', 'Spotify', function($sco
 
     $scope.toggleForm = function() {
         $scope.showForm = !$scope.showForm;
+    }
+
+    $scope.downloadCollage = function () {
+        if (!$scope.downloadLoading) {
+            $scope.downloadLoading = true;
+            domtoimage.toBlob(document.getElementById('collage'), {'bgcolor': 'black'})
+                .then(function (blob) {
+                    window.saveAs(blob, $scope.selectedPlaylist.name + '.png');
+                    $scope.downloadLoading = false;
+                    $scope.$apply();
+                });
+        }
     }
 
 }]);
